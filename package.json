@@ -1,0 +1,26 @@
+{
+  "name": "viewonce-wabot",
+  "version": "2.0.0",
+  "description": "View Once BOT — compatible con Baileys v7.0.0-rc.5",
+  "license": "ISC",
+  "author": "Smoky",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "npm install && node ."
+  },
+  "dependencies": {
+    "@discordjs/collection": "^2.1.1",
+    "@hapi/boom": "^10.0.1",
+    "baileys": "7.0.0-rc.9",
+    "axios": "^1.12.2",
+    "dotenv": "^16.4.5",
+    "file-type": "^19.0.0",
+    "pino": "^9.6.0"
+  },
+  "imports": {
+    "#commands/*": "./src/commands/*",
+    "#events/*": "./src/events/*",
+    "#lib/*": "./src/lib/*"
+  }
+}
