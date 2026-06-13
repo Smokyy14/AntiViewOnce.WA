@@ -72,3 +72,5 @@ async function loadEvents(sock) {
 }
 
 export { loadCommands, loadEvents };
+
+/* Code by https://github.com/DavidModzz */

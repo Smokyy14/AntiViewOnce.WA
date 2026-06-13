@@ -48,3 +48,5 @@ export default (options) => {
 
     return sock;
 };
+
+/* Code by https://github.com/DavidModzz */

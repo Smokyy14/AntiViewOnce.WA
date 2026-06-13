@@ -53,3 +53,5 @@ export async function startSock() {
 }
 
 startSock();
+
+/* Code by https://github.com/DavidModzz ( Browsers.appropiate pasó a ser Browsers.ubuntu )*/

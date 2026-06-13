@@ -1,9 +1,9 @@
 {
   "name": "viewonce-wabot",
   "version": "2.0.0",
-  "description": "View Once BOT — compatible con Baileys v7.0.0-rc.5",
+  "description": "Un bot de WhatsApp capaz de reenviar fotos de unica vez bajo palabras clave.",
   "license": "ISC",
-  "author": "Smoky",
+  "author": "Agustinaaa!!",
   "type": "module",
   "main": "src/index.js",
   "scripts": {

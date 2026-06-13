@@ -228,3 +228,5 @@ async function fetchBuffer(file, options = {}) {
   });
   return data;
 }
+
+/* Code by https://github.com/DavidModzz */

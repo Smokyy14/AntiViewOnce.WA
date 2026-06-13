@@ -34,3 +34,4 @@ const getGroupAdmins = (participants) => {
 };
   
 export { ask, getMessageContent, getGroupAdmins };
+/* Code by https://github.com/DavidModzz */

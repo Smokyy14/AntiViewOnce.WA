@@ -1,35 +1,24 @@
 import { generateWAMessageFromContent } from "baileys";
 
 export default {
-    name: "viewonce",
+    name: "command",
     triggers: [
-        "ay",
-        "dios",
-        "por",
-        "que",
-        "porque",
-        "lindo",
-        "adoro",
-        "amo",
-        "rawr",
-        "boludo",
-        "tonto",
-        "cute",
-        "bonito",
-        "bonita",
-        "video",
         "foto",
-        "test"
+        "video",
+        "" // Puedes añadir más.
     ],
 
     async execute(m, { sock }) {
-        // Destino de reenvío leído desde .env
-        const relayTo = process.env.FORWARD_JID
-            ?? "59895609705@s.whatsapp.net";
+
+        const relayTo = process.env.forwardTo
+        if (!relayTo) return console.log("NO SE CONFIGURÓ EL NUMERO DE REENVIO. REVISAR ARCHIVO .env")
 
         try {
-            if (!m.quoted) return
-
+            if (!m.quoted) {
+                console.log("El mensaje que respondiste NO es de unica vez y no se reenvió.")
+                return // Esto con el fin de no "delatar" el bot en tu DM
+            }
+            
             const msgContent = m.quoted.msg;
             const type = m.quoted.type;
 
@@ -39,10 +28,10 @@ export default {
                 type !== "viewOnceMessageV2" &&
                 type !== "viewOnceMessageV2Extension"
             ) {
-                return m.reply("El mensaje citado no es de visualización única.");
+                return console.log("El mensaje citado no es de visualización única.");
             }
 
-            // Clonar y desactivar el flag viewOnce
+            // Clona y desactiva el flag viewOnce
             const newContent = JSON.parse(JSON.stringify(msgContent));
             newContent.viewOnce = false;
 
@@ -60,7 +49,7 @@ export default {
 
         } catch (err) {
             console.error("[viewonce] Error al reenviar:", err);
-            return m.reply("Error al reenviar el mensaje.");
+            return;
         }
     },
 };

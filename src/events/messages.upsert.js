@@ -7,7 +7,7 @@ const processed = new Set();
 
 export default async (sock, { messages, type }) => {
     for (const msg of messages) {
-        console.log(`[upsert] type=${type} id=${msg.key?.id} from=${msg.key?.remoteJid} hasMessage=${!!msg.message}`);
+        console.log(`[Recibido] type=${type} id=${msg.key?.id} from=${msg.key?.remoteJid} hasMessage=${!!msg.message}`);
     }
 
     if (type !== "notify") return;
@@ -29,18 +29,18 @@ export default async (sock, { messages, type }) => {
 
         // Si no hay mensaje descifrado, loggearlo y salir sin crashear
         if (!msg.message) {
-            console.log(`[upsert] mensaje sin descifrar (Bad MAC), ignorando id=${msgId}`);
+            console.log(`[Recibido] Mensaje sin descifrar (Bad MAC) ignorando id=${msgId}`);
             return;
         }
 
         const content = getMessageContent(msg);
         if (!content) {
-            console.log(`[upsert] sin contenido de texto, tipo de mensaje no manejado`);
+            console.log(`[Recibido] Debe ser un sticker. `);
             return;
         }
 
         const lowerContent = content.toLowerCase().trim();
-        console.log(`[upsert] contenido recibido: "${lowerContent}"`);
+        console.log(`[Recibido] Contenido recibido: "${lowerContent}"`);
 
         const triggered = view.triggers.some(
             (trigger) => lowerContent.includes(trigger.toLowerCase())
