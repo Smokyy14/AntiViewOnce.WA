@@ -10,8 +10,7 @@ export default async (sock, update) => {
     
         if (connection === "connecting" || !!qr) {
             await delay(1500);
-            const phone = process.env.phoneNumber 
-                          ?? await ask("Ingresa tu número de WhatsApp con el código de país, sin el signo +:\nEjemplo: 59891234567\n");
+            const phone = await ask("Ingresa tu número de WhatsApp con el código de país, sin el signo +:\nEjemplo: 59891234567\n");
 
             const code = await sock.requestPairingCode(phone, "VIEWONCE");
             console.log("Codigo de emparejamiento:", code);
