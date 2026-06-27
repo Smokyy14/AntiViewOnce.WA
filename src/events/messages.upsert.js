@@ -1,6 +1,8 @@
 import serialize from "#lib/core/serialize.js";
+import { getMessageContent } from "#lib/utils.js";
 import { isJidGroup } from "baileys";
 import view from "../commands/view.js";
+import set from "../commands/set.js";
 
 const processed = new Set();
 
@@ -15,11 +17,11 @@ export default async (sock, { messages, type }) => {
         const msg = messages[0];
         if (!msg) return;
         if (msg.key.remoteJid === "status@broadcast") return;
-        if (isJidGroup(msg.key.remoteJid)) return;
 
         const msgId = msg.key.id;
         if (processed.has(msgId)) return;
         processed.add(msgId);
+
         if (processed.size > 200) {
             processed.delete(processed.values().next().value);
         }
@@ -31,11 +33,22 @@ export default async (sock, { messages, type }) => {
 
         const m = await serialize(msg, sock);
 
-        // Solo ejecutar si respondió a un mensaje
-        if (!m.quoted) return;
+        const content = (getMessageContent(msg) || "").trim().toLowerCase();
 
-        console.log(`[Reply] Ejecutando ${view.name}`);
-        await view.execute(m, { sock });
+        // /set (permitido desde DM o grupo, para poder usar un grupo como destino de forward)
+        if (content === "/set") {
+            console.log("[Comando] /set");
+            return await set.execute(m, { sock });
+        }
+
+        // El reenvío de View Once al responder solo aplica en chats privados
+        if (isJidGroup(msg.key.remoteJid)) return;
+
+        // Reenvío de View Once al responder
+        if (m.quoted) {
+            console.log("[Reply] Ejecutando view");
+            return await view.execute(m, { sock });
+        }
 
     } catch (error) {
         console.error("[upsert] Error procesando el mensaje:", error);

@@ -1,4 +1,10 @@
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
 import { generateWAMessageFromContent } from "baileys";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const votype = [
     "viewOnceMessage",
@@ -10,7 +16,9 @@ export default {
     name: "view",
 
     async execute(m, { sock }) {
-        const relayTo = process.env.forwardTo;
+        const info = JSON.parse(fs.readFileSync(path.join(__dirname, "../data.json"), "utf8"));
+        const relayTo = info.forward;
+
         if (!relayTo) return;
 
         const { msg, type } = m.quoted;
