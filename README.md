@@ -80,5 +80,6 @@ Puede ser cualquier chat o grupo. Una vez estés en el chat debes escribir `/set
 
 <img src="https://files.catbox.moe/7wti61.jpg" width=250>
 
-# Cosas a tener en cuenta
+# 🛈 Cosas a tener en cuenta
 - El bot va a detectar mensajes de unica vez que se hayan enviado durante la sesión, es decir, mientras estaba encendido. Aunque puede recibir mensajes viejos si ya habias establecido conexión antes con el mismo numero.
+- No me responsabilizo de cualquier uso mal intencionado de esta herramienta.
