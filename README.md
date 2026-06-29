@@ -53,10 +53,7 @@ Una vez estando dentro de AntiViewOnce.WA-main, ejecutas esto para instalar las 
 ```bash
 npm i 
 ```
-Cuando vuelvas a ver, ya puedes continuar.
-```bash
-~/AntiViewOnce.WA-main
-```
+Cuando vuelvas a ver `~/AntiViewOnce.WA-main` ya puedes continuar.
 
 ### 5. Inicializar el bot.
 ```bash
