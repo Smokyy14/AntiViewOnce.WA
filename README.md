@@ -66,7 +66,7 @@ Esto te va a pedir tu número de telefono, lo ingresarás bajo este formato:
 ```js
 [prefijo][numero sin espacios] // 59895123456
 ```
-Te llegará un codigo de vinculación, el codigo es `AGUS-AVOB`.
+Te llegará un codigo de vinculación, el codigo es `4GU5-AVOB`.
 
 Deberias ver algo asi:
 
